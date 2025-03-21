@@ -1,11 +1,11 @@
 from mongoengine import *
 from django.utils import timezone
-
+from product_category import ProductCategory
 
 class Product(Document):
     name = StringField(max_length=200)
     description = StringField()
-    category = StringField()
+    category = ReferenceField(ProductCategory)
     price = FloatField(required=True)
     brand = StringField()
     quantity = IntField()
