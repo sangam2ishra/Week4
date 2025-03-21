@@ -1,4 +1,4 @@
-from myproject.product.models.product import Product  
+from product.models.product import Product  
 
 class ProductRepository:
     def create_product(self, data):

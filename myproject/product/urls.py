@@ -1,5 +1,5 @@
 from django.urls import path
-from myproject.product.controllers import product
+import product.controllers.product as product
 
 urlpatterns=[
     path('products/', product.get_all_products, name='get_all_products'),

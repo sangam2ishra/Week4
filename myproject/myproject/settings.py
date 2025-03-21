@@ -127,6 +127,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 from mongoengine import connect
 
 connect(db='product_db',
-        host='mongodb://root:example@mongo:27017/product_db?authSource=admin',
-        port=27017
+        # host='mongodb://root:example@mongo:27017/product_db?authSource=admin',
+        # port=27017
         )

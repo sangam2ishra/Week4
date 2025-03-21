@@ -1,4 +1,4 @@
-from myproject.product.repository.product import ProductRepository
+from product.repository.product import ProductRepository
 
 class ProductService:
     def __init__(self):
