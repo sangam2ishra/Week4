@@ -1,6 +1,6 @@
 from mongoengine import *
 
-class ProductDocument(Document):
+class ProductCategory(Document):
     title = StringField(required=True, max_length=100)
     description = StringField()
 
