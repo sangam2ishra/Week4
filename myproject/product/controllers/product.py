@@ -2,6 +2,7 @@ from rest_framework import viewsets, status
 from rest_framework.response import Response
 from product.services.product import ProductService
 from product.serializers.product import ProductSerializer
+from product.pagination import StandardResultsSetPagination
 
 class ProductViewSet(viewsets.ViewSet):
     def __init__(self, **kwargs):
@@ -10,6 +11,13 @@ class ProductViewSet(viewsets.ViewSet):
 
     def list(self, request):
         products = self.service.get_all_products()
+        # Instantiate the paginator
+        paginator = StandardResultsSetPagination()
+        # Paginate the queryset
+        page = paginator.paginate_queryset(products, request)
+        if page is not None:
+            serializer = ProductSerializer(page, many=True)
+            return paginator.get_paginated_response(serializer.data)
         serializer = ProductSerializer(products, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
     
@@ -48,4 +56,3 @@ class ProductViewSet(viewsets.ViewSet):
             return Response({"message": "Product deleted successfully."}, status=status.HTTP_204_NO_CONTENT)
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_404_NOT_FOUND)
-

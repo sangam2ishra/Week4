@@ -126,6 +126,13 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'product.pagination.StandardResultsSetPagination',
+    'PAGE_SIZE': 10,
+    # ... other DRF settings ...
+}
+
+
 from mongoengine import connect
 
 connect(db='product_db',
