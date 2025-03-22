@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from product.services.product_category import PrdouctCategoryService
 from product.serializers.product_category import ProductCategorySerializer
 from product.serializers.product import ProductSerializer
+from product.pagination import StandardResultsSetPagination
 
 
 class ProductCategoryViewSet(viewsets.ViewSet):
@@ -13,6 +14,11 @@ class ProductCategoryViewSet(viewsets.ViewSet):
 
     def list(self, request):
         categories = self.service.get_all_category()
+        paginator = StandardResultsSetPagination()
+        page = paginator.paginate_queryset(categories, request)
+        if page is not None:
+            serializer = ProductCategorySerializer(page, many=True)
+            return paginator.get_paginated_response(serializer.data)
         serializer = ProductCategorySerializer(categories, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
     
