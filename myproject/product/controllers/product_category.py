@@ -3,6 +3,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from product.services.product_category import PrdouctCategoryService
 from product.serializers.product_category import ProductCategorySerializer
+from product.serializers.product import ProductSerializer
 
 
 class ProductCategoryViewSet(viewsets.ViewSet):
@@ -76,8 +77,7 @@ class ProductCategoryViewSet(viewsets.ViewSet):
     def products(self, request, pk=None):
         try:
             products = self.service.list_products_in_category(pk)
-            serializer = ProductCategorySerializer(products, many=True)
+            serializer = ProductSerializer(products, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
-
-        

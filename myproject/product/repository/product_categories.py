@@ -2,7 +2,7 @@ from product.models.product_category import ProductCategory
 from product.models.product import Product
 
 class ProductCategoryRepository:
-    def create_create(self, data):
+    def create_category(self, data):
         category = ProductCategory(**data)
         category.save()
         return category
