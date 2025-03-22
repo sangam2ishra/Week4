@@ -79,5 +79,5 @@ class ProductCategoryViewSet(viewsets.ViewSet):
             serializer = ProductCategorySerializer(products, many=True)
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
-    
+
         
