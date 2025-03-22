@@ -1,5 +1,5 @@
 from rest_framework import viewsets, status
-from rest_framework import Response
+from rest_framework.response import Response
 from product.services.product import ProductService
 from product.serializers.product import ProductSerializer
 

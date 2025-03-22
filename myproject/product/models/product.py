@@ -1,6 +1,6 @@
 from mongoengine import *
 from django.utils import timezone
-from product_category import ProductCategory
+from product.models.product_category import ProductCategory
 
 class Product(Document):
     name = StringField(max_length=200)
