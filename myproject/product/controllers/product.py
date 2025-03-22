@@ -1,5 +1,5 @@
 import json
-from product.services.product import ProductService
+from myproject.product.services.product import ProductService
 from django.http import JsonResponse, HttpResponseBadRequest, HttpResponseNotAllowed
 from django.views.decorators.csrf import csrf_exempt
 
