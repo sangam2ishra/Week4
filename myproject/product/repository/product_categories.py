@@ -22,7 +22,9 @@ class ProductCategoryRepository:
         return category
     
     def delete_category(self, category_id):
-        category = self.get_category(id=category_id)
+        print(category_id)
+        category = self.get_category(category_id)
+        print(category)
         if category:
             category.delete()
         return category
