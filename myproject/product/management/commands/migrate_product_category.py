@@ -1,4 +1,5 @@
 #to run it, python manage.py migrate_products_category
+from mongoengine.queryset.visitor import Q
 from django.core.management.base import BaseCommand
 from product.models.product import Product
 from product.models.product_category import ProductCategory
@@ -15,7 +16,7 @@ class Command(BaseCommand):
             )
             default_category.save()        
 
-        products_without_category = Product.objects(category__exists=False)
+        products_without_category = Product.objects(Q(category__exists=False) | Q(category=None))
         count=0
         for product in products_without_category:
             product.category = default_category
