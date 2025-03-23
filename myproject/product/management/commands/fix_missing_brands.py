@@ -7,7 +7,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         default_brand = "Unknown Brand"
-        products = Product.objects(Q(brand__exits=False)|Q(brand=''))
+        products = Product.objects(Q(brand__exists=False)|Q(brand=''))
         count = 0
         for product in products:
             product.brand = default_brand
