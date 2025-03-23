@@ -1,3 +1,4 @@
+# to run these commands, use'python manage.py fix_missing_brands'
 from django.core.management import BaseCommand
 from product.models.product import Product
 from mongoengine.queryset.visitor import Q
